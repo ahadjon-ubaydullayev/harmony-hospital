@@ -36,11 +36,6 @@ pip install -r requirements.txt
 ### 3. Configure Environment
 Create `.env` in the root with:
 ```env
-FASTAPI_HOST=0.0.0.0
-FASTAPI_PORT=8000
-STREAMLIT_HOST=0.0.0.0
-STREAMLIT_PORT=8501
-DATABASE_URL=<your_chromedb_url>
 OPENAI_API_KEY=<your_openai_api_key>
 ```
 
@@ -55,17 +50,5 @@ Access at: `http://localhost:8000`
 streamlit run frontend/app.py --server.port $STREAMLIT_PORT
 ```
 Access at: `http://localhost:8501`
-
----
-
-## Docker (Optional)
-1. Build images:
-    ```bash
-    docker-compose build
-    ```
-2. Start services:
-    ```bash
-    docker-compose up
-    ```
 
 ---
