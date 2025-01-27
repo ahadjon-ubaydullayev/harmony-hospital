@@ -1,5 +1,6 @@
 import dotenv
 from langchain_openai import ChatOpenAI
+# from langchain.chat_models import ChatOpenAI
 from langchain.schema.messages import HumanMessage, SystemMessage
 from langchain.prompts import (
     PromptTemplate,
@@ -66,6 +67,6 @@ review_chain = (
     | output_parser
 )
 
-# # context = "I had a great stay!"
+# context = "I had a great stay!"
 # question = "Who are the cardiology specialists?"
 # print(review_chain.invoke(question))

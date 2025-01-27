@@ -1,6 +1,9 @@
 import streamlit as st
 import requests
+import os
+import dotenv
 
+dotenv.load_dotenv()
 
 st.set_page_config(
     page_title="RAG Chatbot",
@@ -60,9 +63,14 @@ send_button = st.button("Send", disabled=not user_query)
 if send_button:
     # Send POST request to backend
     try:
+        # backend_url = os.getenv("BACKEND_API_URL", "http://localhost:8000")
+        # print(backend_url)
         response = requests.post(
-            "http://localhost:8000/generate/", json={"question": user_query}
+            "http://backend:8000/generate/", json={"question": user_query}
         )
+        # response = requests.post(
+        #     f"{backend_url}/generate/", json={"question": user_query}
+        # )
         if response.status_code == 200:
             bot_response = response.json().get("response", "Sorry, I couldn't understand.")
         else:

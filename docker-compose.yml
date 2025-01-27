@@ -1,0 +1,38 @@
+version: "3.8"
+
+services:
+  backend:
+    build:
+      context: ./chatbot
+      dockerfile: Dockerfile
+    container_name: fast-backend
+    ports:
+      - "8000:8000"
+    env_file:
+      - .env
+    volumes:
+      - ./chatbot:/app
+    networks:
+      - fast-network
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: fast-frontend
+    ports:
+      - "8501:8501"
+    env_file:
+      - .env
+    volumes:
+      - ./frontend:/app
+    depends_on:
+      - backend
+    environment:
+      - BACKEND_API_URL=http://backend:8000  # Add backend service URL for the frontend
+    networks:
+      - fast-network
+
+networks:
+  fast-network:
+    driver: bridge

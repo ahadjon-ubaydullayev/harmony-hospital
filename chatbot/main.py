@@ -1,6 +1,7 @@
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
 import generator  
+from fastapi.middleware.cors import CORSMiddleware
 
 # Define a Pydantic model for the input
 class QueryRequest(BaseModel):
@@ -23,3 +24,12 @@ async def generate_response(query: QueryRequest):
 @app.get("/")
 async def health_check():
     return {"message": "Backend is running!"}
+
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # Replace "*" with specific origins if needed
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
